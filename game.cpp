@@ -2,13 +2,24 @@
 #include<vector>
 #include<string>
 using namespace std;
-
-string** arr;
-int n, row, col;
-string token = "x";
-string name1 = "", name2 = "";
-bool tie;
-
+class TicTacToe{
+private:
+    string** arr;
+    int n, row, col;
+    string token;
+    string name1, name2;
+    bool tie;
+public:
+    TicTacToe(){
+        string** arr=NULL;
+        n=0;
+        row=0;
+        col=0;
+        token="x";
+        name1="";
+        name2="";
+        tie=false;
+    }
 // making the game board
 // making board fn
 void initializeBoard() {
@@ -138,41 +149,48 @@ bool checkResult() {
     tie = true;
     return true;
 }
+// main function for implementation
+void playGame() {
+        cout << "Enter the size of the board (n x n): ";
+        cin >> n;
+
+        initializeBoard();
+
+        cout << "Enter name of the first player: ";
+        cin >> name1;
+        cout << "Enter name of the second player: ";
+        cin >> name2;
+
+        displayBoard();
+
+        while (!checkResult()) {
+            getInput();
+            updateBoard();
+            displayBoard();
+            checkResult();
+        }
+
+        if (token == "x" && !tie) {
+            cout << name2 << " wins the game" << endl;
+        } else if (token == "0" && !tie) {
+            cout << name1 << " wins the game" << endl;
+        } else {
+            cout << "It's a draw" << endl;
+        }
+
+        // Deallocate memory
+        for (int i = 0; i < n; ++i) {
+            delete[] arr[i];
+        }
+        delete[] arr;
+    }
+
+};
+
 
 // main function
 int main() {
-    cout << "Enter the size of the board (n x n): ";
-    cin >> n;
-
-    initializeBoard();
-
-    cout << "Enter name of the first player: ";
-    cin >> name1;
-    cout << "Enter name of the second player: ";
-    cin >> name2;
-
-    displayBoard();
-
-    while (!checkResult()) {
-        getInput();
-        updateBoard();
-        displayBoard();
-        checkResult();
-    }
-
-    if (token == "x" && !tie) {
-        cout << name2 << " wins the game" << endl;
-    } else if (token == "0" && !tie) {
-        cout << name1 << " wins the game" << endl;
-    } else {
-        cout << "It's a draw" << endl;
-    }
-
-    // Deallocate memory
-    for (int i = 0; i < n; ++i) {
-        delete[] arr[i];
-    }
-    delete[] arr;
-
+    TicTacToe game;
+    game.playGame();
     return 0;
 }
