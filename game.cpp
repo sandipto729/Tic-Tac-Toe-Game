@@ -10,6 +10,7 @@ string name1 = "", name2 = "";
 bool tie;
 
 // making the game board
+// making board fn
 void initializeBoard() {
     int l=1;
     arr = new string*[n];
@@ -67,6 +68,7 @@ void getInput() {
     col = (digit - 1) % n;
 
     // Check for valid input
+
     if (digit < 1 || digit > n * n || arr[row][col] == "x" || arr[row][col] == "0") {
         cout << "Invalid input! Please try again." << endl;
         getInput();
@@ -80,6 +82,7 @@ void updateBoard() {
 }
 
 // Function to check win and late
+// logic function 
 bool checkResult() {
     //check rows and coloum
    for(int i=0;i<n;i++){
