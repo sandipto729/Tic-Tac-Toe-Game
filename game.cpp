@@ -9,20 +9,21 @@ string token = "x";
 string name1 = "", name2 = "";
 bool tie;
 
-// Function to initialize the game board
+// making the game board
 void initializeBoard() {
     int l=1;
     arr = new string*[n];
     for (int i = 0; i < n; ++i) {
         arr[i] = new string[n];
         for (int j = 0; j < n; ++j) {
-            arr[i][j] = to_string(l); // Fill the board with numbers 1 to n*n
+            // Fill the board with numbers 1 to n*n
+            arr[i][j] = to_string(l); 
             l++;
         }
     }
 }
 
-// Function to display the game board
+// display the game board
 void displayBoard() {
 
     for(int j=1;j<=n+1;j++){
@@ -55,7 +56,7 @@ void displayBoard() {
     }
 }
 
-// Function to take input from the user
+// take input from the user
 void getInput() {
     int digit;
     cout << (token == "x" ? name1 : name2) << " please enter: ";
@@ -72,18 +73,16 @@ void getInput() {
     }
 }
 
-// Function to update the game board
+// update the game board
 void updateBoard() {
     arr[row][col] = token;
     token = (token == "x") ? "0" : "x";
 }
 
-// Function to check for a win or tie
+// Function to check win and late
 bool checkResult() {
     //check rows and coloum
-   
-    
-    for(int i=0;i<n;i++){
+   for(int i=0;i<n;i++){
         string pivot1=arr[i][0];
         bool rowCheck=true;
         for(int j=1;j<n;j++){
@@ -94,7 +93,6 @@ bool checkResult() {
         if(rowCheck)return true;
     }
    
-    
     for(int i=0;i<n;i++){
         string pivot2=arr[0][i];
         bool colCheck=true;
@@ -133,12 +131,12 @@ bool checkResult() {
         }
     }
 
-    // If all spaces are filled and no winner, it's a tie
+    // space filled and tie
     tie = true;
     return true;
 }
 
-// Main function
+// main function
 int main() {
     cout << "Enter the size of the board (n x n): ";
     cin >> n;
