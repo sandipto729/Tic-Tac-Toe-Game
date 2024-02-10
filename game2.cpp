@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include<string>
+#include<string.h>
 using namespace std;
 class TicTacToe{
 private:
@@ -393,13 +393,7 @@ void playGame(){
 
 };
 
-
-
-// main function
-int main() {
-    int choice;
-    cout<<"Plese Enter your choice :\n 1.Play Single with computer \n 2.Play duel  \n";
-    cin>>choice;
+void recursiveplay(int choice){
     if(choice==1){
         TicTacToe2 game;
         game.playGame();
@@ -409,8 +403,19 @@ int main() {
         game.playGame();
     }
     else{
-        cout<<"Invalid Choice !!!";
+        cout<<"Invalid Choice !!!\nPlease enter again ";
+        int choice2;
+        cin>>choice2;
+        recursiveplay(choice2);
     }
+}
+
+// main function
+int main() {
+    int choice;
+    cout<<"Plese Enter your choice :\n 1.Play Single with computer \n 2.Play duel  \n\nPlease Enter : ";
+    cin>>choice;
+    recursiveplay(choice);
     
     return 0;
 }
